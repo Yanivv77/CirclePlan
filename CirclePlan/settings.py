@@ -33,13 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     
     
-    'pages.apps.PagesConfig',
-    'listings.apps.ListingsConfig',
-    'realtors.apps.RealtorsConfig',
-    'accounts.apps.AccountsConfig',
-    'contacts.apps.ContactsConfig',
-    'yashuvim.apps.YashuvimConfig',
-    'instructors.apps.InstructorsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,19 +40,36 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.db.models',
+    'admin_reorder',
     'psycopg2_extension',
+    'rest_framework',
+    'corsheaders',
+    'django_extensions',
     'clear_cache',
-    
+    'crispy_forms',
+    'listings.apps.ListingsConfig',
+    'realtors.apps.RealtorsConfig',
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+    'instructors.apps.InstructorsConfig',
+    'yashuvim.apps.YashuvimConfig',
+    'attendance.apps.AttendanceConfig',
 ]
+
+CRISPY_TEMPLATE_PACK =  'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'CirclePlan.urls'
@@ -75,26 +85,32 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
+                
+                
+                
 
             ],
         },
+
+
+        
     },
 ]
 
 WSGI_APPLICATION = 'CirclePlan.wsgi.application'
-
+CSRF_COOKIE_SECURE = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'CirclePlan',
         'USER': 'postgres',
         'PASSWORD': '1a2a3a4a',
         'HOST' : 'localhost'
+        
     }
 }
 
@@ -143,6 +159,34 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'CirclePlan/static')
 ]
 
+# corsheaders
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'https://attendency-web.herokuapp.com',
+]
+
+# rest_framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseFormParser',
+        'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+    ),
+}
+
+
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -152,6 +196,29 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+ADMIN_REORDER = (
+  
+
+    # Reorder app models
+    
+
+    
+
+    {'app': 'auth', 'models': ('auth.User', 'auth.Group')},
+    {'app': 'attendance', 'models' : ('attendance.Member', 'attendance.Meeting','attendance.Participation',) },
+    {'app': 'attendance', 'models' : ('attendance.Circle', ),'label': 'Circles'},
+    {'app': 'yashuvim' },
+    
+
+    
+
+)
+
+# {'app': 'attendance', 'models':('attendance.Meetings', 'attendance.Members','attendance.Participations')},
+#Circles
+
+
 
 
 """

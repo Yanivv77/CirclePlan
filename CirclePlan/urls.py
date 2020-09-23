@@ -8,8 +8,8 @@ from django.conf.urls import url
 urlpatterns = [
     path('', include('pages.urls')),
     path('listings/', include('listings.urls')),
+    path('circles/', include('attendance.urls')),
     path('accounts/', include('accounts.urls')),
-    path('contacts/', include('contacts.urls')),
     path('yashuvim/', include('yashuvim.urls')),
     path('admin/', admin.site.urls), 
     url(r'^favicon/.ico$',RedirectView.as_view(url='/static/images/favicon.ico'))

@@ -54,14 +54,28 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+  zoom: 125%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  text-align: left;
-  background-color: #fff; }
+  text-align: right;
+  background-color: #fff; 
+  
+
+}
+
+#main-footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height: 3.5rem;   /* Height of the footer */
+  background:#6cf;
+}
+
+
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -324,8 +338,11 @@ h6, .h6 {
   font-size: 1rem; }
 
 .lead {
-  font-size: 1.25rem;
-  font-weight: 300; }
+  font-size: 1.5rem;
+  font-weight: 300; 
+  
+
+}
 
 .display-1 {
   font-size: 6rem;
@@ -2742,7 +2759,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem; }
+  padding: 0.5rem 1.0rem; }
   .nav-link:hover, .nav-link:focus {
     text-decoration: none; }
   .nav-link.disabled {
@@ -2932,7 +2949,7 @@ input[type="button"].btn-block {
         position: absolute; }
       .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-left: 10.5rem; }
     .navbar-expand-lg > .container,
     .navbar-expand-lg > .container-fluid {
       flex-wrap: nowrap; }
