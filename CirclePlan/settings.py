@@ -96,7 +96,6 @@ TEMPLATES = [
         
     },
 ]
-
 WSGI_APPLICATION = 'CirclePlan.wsgi.application'
 CSRF_COOKIE_SECURE = True
 
