@@ -3,7 +3,9 @@ from django.contrib import messages , auth
 from django.contrib.auth.models import User
 
 
-def login(request):
+
+
+def index(request):
      if request.method == 'POST': 
           username = request.POST['username']
           password = request.POST['password']
@@ -19,7 +21,7 @@ def login(request):
                return redirect('index')
  
      else: 
-          return render(request,'accounts/login.html')
+          return render(request,'accounts/index.html')
 
 
 

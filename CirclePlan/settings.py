@@ -101,6 +101,7 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = 'CirclePlan.wsgi.application'
 CSRF_COOKIE_SECURE = True
+LOGOUT_REDIRECT_URL = 'index'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

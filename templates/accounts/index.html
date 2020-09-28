@@ -5,8 +5,10 @@
 
 {% block content %} 
 
+<div class="hero-image">
 
-<section id="login" class="bg-light py-5">
+
+<section  id="login" class="bg-light py-5" >
   <div class="container">
     <div class="row">
       <div class="col-md-6 mx-auto">
@@ -15,13 +17,13 @@
             <h4 dir="ltr" >
               <i  class="fas fa-sign-in-alt " ></i> כניסה</h4>
           </div>
-          <div class="card-body">
+          <div class="card-body" style="margin:0;">
 
             <!---Alerts -->
 
               {% include 'partials/_alerts.html' %}
               
-              <form action="{%url 'login' %}" method="POST">
+              <form action="{%url 'index' %}" method="POST">
                   {% csrf_token %}
 
               <div class="form-group">
@@ -42,5 +44,5 @@
     </div>
   </div>
 </section>
-
+</div>
 {% endblock %}
