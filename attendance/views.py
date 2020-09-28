@@ -13,7 +13,7 @@ def index(request):
      context = {
           'circles' : paged_circles }  
       
-     return render(request,'C:/Dev/CirclePlan/templates/accounts/dashboard.html',context)
+     return render(request,'./templates/accounts/dashboard.html',context)
 
 
 def circle(request ,circle_id): 
@@ -22,7 +22,7 @@ def circle(request ,circle_id):
      context = {
           'circle' : circle } 
 
-     return render(request,'templates/circles/circles.html',context)
+     return render(request,'./templates/circles/circles.html',context)
      
 
 from django import template

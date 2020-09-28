@@ -55,7 +55,10 @@ INSTALLED_APPS = [
     'instructors.apps.InstructorsConfig',
     'yashuvim.apps.YashuvimConfig',
     'attendance.apps.AttendanceConfig',
+    
 ]
+
+
 
 CRISPY_TEMPLATE_PACK =  'bootstrap4'
 

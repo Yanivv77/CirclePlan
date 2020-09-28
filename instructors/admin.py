@@ -10,6 +10,7 @@ class InstructorAdmin(admin.ModelAdmin):
     list_display_links = ('id','name')
     search_fields = ('name',)
     list_per_page = 40
+    exclude = ['description']
  
 
 admin.site.register(Instructor,InstructorAdmin)
