@@ -33,7 +33,7 @@ img {
     left: 0;
     min-height: 400px;
     width: 100%;
-    background: rgba(51, 51, 51, 0.8); }
+    background: rgba(166, 235, 4, 0.308) }
 
 #services {
   
@@ -48,7 +48,7 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(32, 134, 107, 0.8); }
+    background: rgba(21, 214, 47, 0.308) }
 
 #showcase-inner {
   
@@ -56,6 +56,7 @@ img {
   position: relative;
   overflow: hidden;
   min-height: 200px; }
+
   #showcase-inner::before {
     content: '';
     position: absolute;
@@ -63,7 +64,7 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(32, 134, 107, 0.8); }
+    background: #f9e33d5e }
   #showcase-inner.showcase-search {
     min-height: 270px; }
 

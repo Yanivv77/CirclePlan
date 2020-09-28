@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Yashuv',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Name', models.CharField(max_length=200)),
+                ('name', models.CharField(max_length=200)),
                 ('photo_main', models.ImageField(blank=True, upload_to='photos/%Y/%m/%d/')),
             ],
         ),

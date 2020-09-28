@@ -1,9 +1,11 @@
 from django.shortcuts import render , redirect
 from django.contrib import messages , auth
 from django.contrib.auth.models import User
-from contacts.models import Contact
 
-def login(request):
+
+
+
+def index(request):
      if request.method == 'POST': 
           username = request.POST['username']
           password = request.POST['password']
@@ -11,14 +13,27 @@ def login(request):
           user = auth.authenticate(username=username,password=password)
           if user is not None:
                auth.login(request,user)
-               messages.success(request,'You are now logged in')
-               return redirect('dashboard')
+               messages.success(request,'התחברתה בהצלחה')
+               return redirect('/circles')
+              
           else:
-               messages.error(request,'Unvalid credentials')
-               return redirect('login')
+               messages.error(request,'הכנסתה פרטים לא נכונים')
+               return redirect('index')
  
      else: 
-          return render(request,'accounts/login.html')
+          return render(request,'accounts/index.html')
+
+
+
+def logout(request):
+     if request.method == 'POST': 
+          auth.logout(request)
+          messages.success(request,'התנתקתה בהצלחה')
+          return redirect('http://127.0.0.1:8000/')
+
+     
+def dashboard(request):
+     return render(request,'accounts/dashboard.html')
 
 
 
@@ -35,11 +50,11 @@ def register(request):
           if password == password2:
                #Cehck username
                if User.objects.filter(username = username).exists():
-                    messages.error(request,'That username is taken')
+                    messages.error(request,' שם משתמש תפוס נסה אחר')
                     return redirect('register') 
                else:
                     if User.objects.filter(email = email).exists():
-                         messages.error(request,'That email is taken')
+                         messages.error(request,'מייל תפוס נסה אחר')
                          return redirect('register') 
                     else: 
                          # not taken
@@ -53,28 +68,13 @@ def register(request):
 
                          #with login after register
                          user.save()
-                         messages.success(request,'You are now registered and can login ')
-                         return redirect('login')
+                         messages.success(request,'נרשמתה בהצלחה')
+                         return redirect('index')
 
 
           else:
-               messages.error(request,'Passwords do not match')
+               messages.error(request,'הסיסמה לא תואמת ')
                return redirect('register')
      else: 
           return render(request,'accounts/register.html')
      
-def logout(request):
-     if request.method == 'POST': 
-          auth.logout(request)
-          messages.success(request,'You are now logged out ')
-          return redirect('index')
-
-     
-def dashboard(request):
-     user_contacts = Contact.objects.order_by('-contact_date').filter(user_id = request.user.id)
-     
-     context = {
-          'contacts': user_contacts
-     }
-
-     return render(request,'accounts/dashboard.html',context)
