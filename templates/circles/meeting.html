@@ -7,8 +7,8 @@
   <div class="container">
     <div class="row text-center">
       <div class="col-md-12 dar"  >
-        <h1 class="display-5">לוח ניהול פעילויות</h1>
-        <h2 class="lead"></b>נהל פעיליות ודווח נוכחות</b></h2>
+        <h1 class="display-5">מפגש</h1>
+        
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
         <h2>שלום,  {{user}}</h2>
   
         
-          <h5> {{circle.title}} מפגשים:</h5>
+          <h5>  מפגשי {{circle.title}}</h5>
 
           {% if meetings  %}
               <table class="table col-md-12">
@@ -49,7 +49,7 @@
                   <tr>
                    
                     <th scope="col-md-4 ">תאריך פגישה</th>
-                    <th scope="col-md-4 ">פגישה מס</th>
+                 
                     
                     
 
@@ -66,14 +66,14 @@
                             <tr>
                             
                               
-                            
+                              
                               <td>
                                 {{ meeting.date_time|date:"d.m.Y"}} 
                               <td>
-
+                               
+                                  <td>
                         
-                            <a class="btn btn-light col-md-12" href="{% url 'meeting' circle.id meeting.id %}">כנס כאן</a>
-                            
+                            <a class="btn btn-light col-md-12" href="{% url 'circle' circle.id %}">כנס כאן</a>
                               
                               </td>
                             </tr>
@@ -84,7 +84,7 @@
               </table>
           {% else %}
           <p></p>
-          <p> אין כרגע חוג שאתה מדריך </p>
+          <p> אין כרגע מפגשים </p>
           {% endif %}
 
           <div class="row">
