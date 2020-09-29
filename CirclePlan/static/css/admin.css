@@ -33,9 +33,14 @@ div.breadcrumbs a{
     font-size: 15px;
 } 
 
+#content {
+    padding: 20px 400px;
+}
+
+
 .dashboard #content {
     width: 700px;
-    position: fixed; 
+  
 }
 
 .module h2, .module caption, .inline-group h2 {

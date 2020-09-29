@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django import template
+from attendance.models import Meeting
 from .models import Circle
 
 
@@ -18,14 +20,18 @@ def index(request):
 
 def circle(request ,circle_id): 
      circle = get_object_or_404(Circle,pk=circle_id)
-
-     context = {
-          'circle' : circle } 
-
-     return render(request,'./templates/circles/circles.html',context)
+     meetings = Meeting.objects.all()
      
 
-from django import template
+
+     context = {
+          'circle' : circle,
+          'meetings' : meetings } 
+
+     return render(request,'./templates/circles/circle.html',context)
+     
+
+
 
 register = template.Library()
 

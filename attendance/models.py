@@ -4,7 +4,7 @@ from django_extensions.db.models import TimeStampedModel
 from instructors.models import Instructor
 from yashuvim.models import Yashuv
 from django.utils import timezone
-from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 from django.core.validators import RegexValidator
@@ -62,23 +62,14 @@ class Meeting(TimeStampedModel):
         related_name="meetings",
         related_query_name="meeting",
     )
-    date_time = models.DateTimeField()
+    date_time =  models.DateField()
     description = models.TextField(blank=True)
 
-    @property
-    def __localtime(self):
-        return timezone.localtime(self.date_time)
 
-    @property
-    def date(self):
-        return self.__localtime.strftime('%Y-%m-%d')
 
-    @property
-    def time(self):
-        return self.__localtime.strftime('%H:%M')
+    
 
-    def __str__(self):
-        return f'{str(self.circle)} meeting on {self.date} at {self.time}'
+   
 
 
 class Participation(TimeStampedModel):

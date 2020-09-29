@@ -30,8 +30,8 @@ class CircleAdmin(admin.ModelAdmin):
 
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ('circle', 'date', 'time')
-    
+    list_display = ('circle', 'date_time')
+    exclude = ['description']
 
 
 @admin.register(Participation)
