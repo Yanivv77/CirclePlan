@@ -40,12 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django_extensions',
     'django.db.models',
     'admin_reorder',
     'psycopg2_extension',
     'rest_framework',
     'corsheaders',
-    'django_extensions',
     'clear_cache',
     'crispy_forms',
     'listings.apps.ListingsConfig',
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'instructors.apps.InstructorsConfig',
     'yashuvim.apps.YashuvimConfig',
     'attendance.apps.AttendanceConfig',
+    
     
 ]
 

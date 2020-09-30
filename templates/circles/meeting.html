@@ -34,61 +34,66 @@
 </section>
 
 
-<section id="dashboard" class="py-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>שלום,  {{user}}</h2>
+<form action method="post">
+  {% csrf_token %}
+
   
-        
-          <h5>  מפגשי {{circle.title}}</h5>
 
-          {% if meetings  %}
-              <table class="table col-md-12">
-                <thead>
-                  <tr>
-                   
-                    <th scope="col-md-4 ">תאריך פגישה</th>
-                 
-                    
-                    
-
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                  {% for meeting in meetings %}
-                
-                    {% if circle.id == meeting.circle.id  %}
-                        {% if circle.instructor == user  %}
+  <section id="dashboard" class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>שלום,  {{user}}</h2>
+            <h5>  מפגשי {{meeting}}</h5>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>שם</th>
+                        <th>נוכחות</th>
+                    </tr>
+                  </thead>
+                    <tbody>
                       
-                            <tr>
-                            
-                              
-                              
-                              <td>
-                                {{ meeting.date_time|date:"d.m.Y"}} 
-                              <td>
-                               
-                                  <td>
-                        
-                            <a class="btn btn-light col-md-12" href="{% url 'circle' circle.id %}">כנס כאן</a>
-                              
-                              </td>
-                            </tr>
-                        {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </tbody>
-              </table>
-          {% else %}
-          <p></p>
-          <p> אין כרגע מפגשים </p>
-          {% endif %}
 
-          <div class="row">
-            <div class="col-md-12">
+                      
+                        {% for participation in participations  %}
+                          {%  if meeting == participation.meeting %}
+                            <tr>
+                                <td>{{participation.member.full_name}}</td>
+                                  <td>
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            {% if participation.attended  %}
+                                            <label class="btn btn-outline-success active">
+                                                <input type="radio" name="{{ participation.member.id }}" id="option1" autocomplete="off" value="ture" checked> נוכח
+                                            </label>
+            
+                                            <label class="btn btn-outline-danger">
+                                                <input type="radio" name="{{ participation.member.id }}" id="option2" autocomplete="off" value="false"> נעדר
+                                            </label>
+                                            {% else %}
+                                            <label class="btn btn-outline-success">
+                                                <input type="radio" name="{{ participation.member.id }}" id="option1" autocomplete="off" value="ture" > נוכח
+                                            </label>
+            
+                                            <label class="btn btn-outline-danger active">
+                                                <input type="radio" name="{{ participation.member.USN }}" id="option2" autocomplete="off" value="false" checked> נעדר
+                                            </label>
+                                            {% endif %}
+                                    </div>
+                                </td>
+                              </tr>
+                            {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+            <input class="btn btn-success" type="submit" value="Submit">
+</form>
+            
+          
     
     
                   {% if circles.has_other_pages %}
