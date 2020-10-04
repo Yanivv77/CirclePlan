@@ -103,7 +103,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CirclePlan.wsgi.application'
 CSRF_COOKIE_SECURE = True
 LOGOUT_REDIRECT_URL = 'index'
-DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
 ADMIN_TOOLS_MENU = 'CirclePlan.menu.CustomMenu'
 
 # Database
