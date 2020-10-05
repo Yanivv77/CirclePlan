@@ -13,11 +13,11 @@ def index(request):
           user = auth.authenticate(username=username,password=password)
           if user is not None:
                auth.login(request,user)
-               messages.success(request,'התחברתה בהצלחה')
+               messages.success(request,'התחברת בהצלחה')
                return redirect('/circles')
               
           else:
-               messages.error(request,'הכנסתה פרטים לא נכונים')
+               messages.error(request,'הכנסת פריט שגוי ')
                return redirect('index')
  
      else: 
@@ -28,7 +28,7 @@ def index(request):
 def logout(request):
      if request.method == 'POST': 
           auth.logout(request)
-          messages.success(request,'התנתקתה בהצלחה')
+          messages.success(request,'התנתקת בהצלחה')
           return redirect('http://127.0.0.1:8000/')
 
      
@@ -68,7 +68,7 @@ def register(request):
 
                          #with login after register
                          user.save()
-                         messages.success(request,'נרשמתה בהצלחה')
+                         messages.success(request,'נרשמת בהצלחה')
                          return redirect('index')
 
 

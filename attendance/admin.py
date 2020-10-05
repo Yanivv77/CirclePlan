@@ -20,7 +20,7 @@ admin.site.register(Member,MemberAdmin)
 
 @admin.register(Circle)
 class CircleAdmin(admin.ModelAdmin):
-   list_display = ('title','instructor','yashuv','is_active','participates',)
+   list_display = ('title','instructor','yashuv','is_active','participates','id')
    list_display_links = ('title',)  
    search_fields = ('title','yashuv',)
    list_filter = ('yashuv','instructor',)
@@ -30,13 +30,13 @@ class CircleAdmin(admin.ModelAdmin):
 
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ('circle', 'date_time')
+    list_display = ('circle', 'date_time','id')
     exclude = ['description']
 
 
 @admin.register(Participation)
 class ParticipationAdmin(admin.ModelAdmin):
-    list_display = ('meeting', 'member', 'attended')
+    list_display = ('meeting', 'member', 'attended',)
     exclude = ['description']
 
 
