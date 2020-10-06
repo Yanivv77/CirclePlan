@@ -55,7 +55,7 @@ class MeetingTableSerializer(BaseReactModelSerializer):
             'circle',
             'circle_title',
             'date',
-            
+
         )
 
 

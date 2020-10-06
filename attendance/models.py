@@ -28,7 +28,8 @@ class Member(TimeStampedModel):
     phone = models.CharField(max_length =200,blank = True)
     email = models.EmailField()
     allergys_to = models.CharField(max_length =200,blank = True)
-    shirt_size = models.CharField(max_length=5, blank=True)
+    SHIRTS_CHOICES = [('10', '10'), ('12', '12'), ('14', '14'), ('16', '16'), ('18', '18'), ('XS', 'XS'), ('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')]
+    shirt_size = models.CharField(choices=SHIRTS_CHOICES,max_length=4,default = "")
     youth_organization = models.CharField(max_length=64, blank=True)
     hobbies = models.CharField(max_length =200,blank = True)
     contact_name = models.CharField(max_length=64,blank = False, default = "")

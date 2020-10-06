@@ -8,14 +8,14 @@
     <div class="row text-center">
       <div class="col-md-12 dar"  >
         <h1 class="display-5">מפגש</h1>
-        
+
       </div>
     </div>
   </div>
 </section>
 
 
-<!--Alerts--> 
+<!--Alerts-->
 {% include 'partials/_alerts.html' %}
 
 <!-- Breadcrumb -->
@@ -24,7 +24,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          
+
             <i class="fas fa-home"></i>ראשי</a>
         </li>
         <!--<li class="breadcrumb-item active"> Dashboard</li>-->
@@ -34,85 +34,84 @@
 </section>
 
 
-<form action method="post">
-  {% csrf_token %}
-
-  
 
   <section id="dashboard" class="py-2">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h2>שלום,  {{user}}</h2>
-            <h5>  מפגשי {{meeting}}</h5>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                        <th>שם</th>
-                        <th>נוכחות</th>
-                    </tr>
-                  </thead>
-                    <tbody>
-                      
-
-                      
-                        {% for participation in participations  %}
-                          {%  if meeting == participation.meeting %}
-                            <tr>
-                                <td>{{participation.member.full_name}}</td>
-                                  <td>
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                            {% if participation.attended  %}
-                                            <label class="btn btn-outline-success active">
-                                                <input type="radio" name="{{ participation.member.id }}" id="option1" autocomplete="off" value="ture" checked> נוכח
-                                            </label>
-            
-                                            <label class="btn btn-outline-danger">
-                                                <input type="radio" name="{{ participation.member.id }}" id="option2" autocomplete="off" value="false"> נעדר
-                                            </label>
-                                            {% else %}
-                                            <label class="btn btn-outline-success">
-                                                <input type="radio" name="{{ participation.member.id }}" id="option1" autocomplete="off" value="ture" > נוכח
-                                            </label>
-            
-                                            <label class="btn btn-outline-danger active">
-                                                <input type="radio" name="{{ participation.member.USN }}" id="option2" autocomplete="off" value="false" checked> נעדר
-                                            </label>
-                                            {% endif %}
-                                    </div>
-                                </td>
+            <h5>   {{meeting}}</h5>
+          <div class="card-body">
+            <form action="{% url 'MeetingViewSet' circle.pk meeting.pk %}" method = 'POST' id="form_attend">
+                  {% csrf_token %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                              <tr>
+                                <th>שם</th>
+                                <th>נוכחות</th>
                               </tr>
-                            {% endif %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-              </div>
-            </div>
-            <input class="btn btn-success" type="submit" value="Submit">
-</form>
-            
-          
-    
-    
+                          </thead>
+                            <tbody>
+                                {% for participation in participations  %}
+                                  {%  if meeting == participation.meeting %}
+                                    <tr>
+                                      <td>{{participation.member.full_name}}</td>
+                                      <td>
+                                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                    {% if participation.attended  %}
+                                                      <label class="btn btn-outline-success active">
+                                                      <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" checked> נוכח
+                                                      </label>
+                                                      <label class="btn btn-outline-danger">
+                                                      <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false"> נעדר
+                                                      </label>
+                                                    {% else %}
+                                                      <label class="btn btn-outline-success">
+                                                      <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" > נוכח
+                                                      </label>
+                                                      <label class="btn btn-outline-danger active">
+                                                      <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false" checked> נעדר
+                                                      </label>
+                                                    {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                <input class="btn btn-success" type="submit" value="שמור" >
+            </form>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+
+  </div>
+    </div>
+        </div>
+           </div>
+               </div>
                   {% if circles.has_other_pages %}
-    
+
                     <ul class="pagination">
                         {% if circles.has_previous %}
-                          <li class="page_item"> 
+                          <li class="page_item">
                             <a href="?page={{circles.previous_page_number}}" class="page-link"> &laquo; </a>
                           </li>
                         {% else %}
                           <li class ="page-item disabled">
                             <a  class="page-link">  &laquo; </a>
                           </li>
-                        {%endif%}  
+                        {%endif%}
                         {% for i in circles.paginator.page_range %}
                            {% if circles.number == i %}
                               <li class ="page-item active">
                                 <a class="page-link">  {{i}} </a>
-                              </li> 
+                              </li>
                            {% else%}
                             <li class ="page-item ">
                                 <a href="?page={{i}}" class="page-link"> {{i}} </a>
@@ -120,22 +119,19 @@
                            {% endif %}
                         {% endfor %}
                         {% if circles.has_next %}
-                            <li class="page_item"> 
+                            <li class="page_item">
                               <a href="?page={{circles.next_page_number}}" class="page-link"> &raquo; </a>
                             </li>
                         {% else %}
                           <li class ="page-item disabled">
                             <a  class="page-link">  &laquo; </a>
                           </li>
-                        {%endif%}  
+                        {%endif%}
                     </ul>
-    
+
                   {%endif%}
-    
             </div>
           </div>
-
-
       </div>
     </div>
   </div>
@@ -145,7 +141,22 @@
 
 
 {% endblock %}
-
-
-
-
+{% block js %}
+<script type="text/javascript">
+$(function () {
+  $("#form_attend").submit(function () {
+    let url = $(this).attr('action')
+    $.ajax({
+      url:url,
+      method: 'POST',
+      data:$(this).serialize(),
+      success:()=>{
+        console.log('ok');
+        location.reload()
+      }
+    })
+    return false;
+  })
+})
+</script>
+{% endblock %}

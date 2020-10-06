@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
-    
+
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +55,6 @@ INSTALLED_APPS = [
     'instructors.apps.InstructorsConfig',
     'yashuvim.apps.YashuvimConfig',
     'attendance.apps.AttendanceConfig',
-    
-    
 ]
 
 
@@ -89,15 +87,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
-                
-                
+
+
+
 
             ],
         },
 
 
-        
+
     },
 ]
 WSGI_APPLICATION = 'CirclePlan.wsgi.application'
@@ -116,7 +114,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': '1a2a3a4a',
         'HOST' : 'localhost'
-        
+
     }
 }
 
@@ -204,20 +202,20 @@ MESSAGE_TAGS = {
 }
 
 ADMIN_REORDER = (
-  
+
 
     # Reorder app models
-    
 
-    
+
+
 
     {'app': 'auth', 'models': ('auth.User', 'auth.Group')},
     {'app': 'attendance', 'models' : ('attendance.Member', 'attendance.Meeting','attendance.Participation',) },
     {'app': 'attendance', 'models' : ('attendance.Circle', ),'label': 'Circles'},
     {'app': 'yashuvim' },
-    
 
-    
+
+
 
 )
 
@@ -236,7 +234,3 @@ EMAIL_HOST_USER = '@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 """
-
-
-
-

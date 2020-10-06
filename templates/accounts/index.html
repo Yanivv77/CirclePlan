@@ -1,9 +1,9 @@
-{% extends 'base.html' %} 
-{% load humanize %} 
+{% extends 'base.html' %}
+{% load humanize %}
 
 {%block title %} | Welcome {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <div class="hero-image">
 
@@ -22,8 +22,8 @@
             <!---Alerts -->
 
               {% include 'partials/_alerts.html' %}
-              
-              <form action="{%url 'index' %}" method="POST">
+
+              <form action="{%url 'accounts:index' %}" method="post" id="form_attend">
                   {% csrf_token %}
 
               <div class="form-group">
