@@ -12,7 +12,7 @@ from django.core.validators import RegexValidator
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('full_name','yashuv')
     list_filter = ('yashuv',)
-    search_fields = ('name',)
+    search_fields = ('full_name',)
     exclude = ['description',]
     
 admin.site.register(Member,MemberAdmin) 
@@ -20,9 +20,9 @@ admin.site.register(Member,MemberAdmin)
 
 @admin.register(Circle)
 class CircleAdmin(admin.ModelAdmin):
-   list_display = ('title','instructor','yashuv','is_active','participates','id')
+   list_display = ('title','instructor','yashuv','is_active','participates')
    list_display_links = ('title',)  
-   search_fields = ('title','yashuv',)
+   search_fields = ('title',)
    list_filter = ('yashuv','instructor',)
    exclude = ['description']
    
@@ -30,7 +30,7 @@ class CircleAdmin(admin.ModelAdmin):
 
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ('circle', 'date_time','id')
+    list_display = ('circle', 'date_time',)
     exclude = ['description']
 
 
