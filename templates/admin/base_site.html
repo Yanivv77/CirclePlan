@@ -2,12 +2,23 @@
 {% load static %}
 
 {% block branding %}
-
 <h1 id="head"> 
     <img src="{% static 'img/logo.png' %}" alt="CirclePlan"
     height="50" width="80" class= "brand_img"> Admin Area
 </h1>
+
+
+
 {% endblock %}
+
+
+
+<style type="text/css">
+    .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+        display: none
+    }
+    </style>
+
 
 {% block userlinks %}
     {% if site_url %}

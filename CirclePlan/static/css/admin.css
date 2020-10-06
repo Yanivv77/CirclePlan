@@ -62,3 +62,10 @@ div.breadcrumbs a{
     
     background: #0071c5;
 }
+
+
+
+ .timezonewarning { display: none !important}
+
+ .datetimeshortcuts > a:nth-child(1) { display: none !important}
+   

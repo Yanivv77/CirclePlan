@@ -55,6 +55,12 @@ INSTALLED_APPS = [
     'instructors.apps.InstructorsConfig',
     'yashuvim.apps.YashuvimConfig',
     'attendance.apps.AttendanceConfig',
+<<<<<<< HEAD
+    
+
+
+=======
+>>>>>>> 9cf949672d7304aef54e934b940c1a7762a149b4
 ]
 
 
