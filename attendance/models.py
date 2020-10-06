@@ -14,24 +14,36 @@ def get_name(self):
 
 User.add_to_class("__str__", get_name)
 
+
+
+
 class Member(TimeStampedModel):
-    full_name = models.CharField(max_length=64)
+    full_name = models.CharField(max_length=64,blank = False)
     preferred_name = models.CharField(max_length=64, blank=True)
     id_number = models.CharField(validators=[RegexValidator(regex='^.{9}$', message='Length has to be 9', code='nomatch',)],max_length =9)
+    GENDER_CHOICES = [('זכר', 'זכר'), ('נקבה', 'נקבה')]
+    gender = models.CharField(choices=GENDER_CHOICES,max_length=4,default = "")
+    date_of_birth = models.DateField(blank = False,)
     yashuv = models.ForeignKey(Yashuv, on_delete=models.CASCADE)
     phone = models.CharField(max_length =200,blank = True)
     email = models.EmailField()
     allergys_to = models.CharField(max_length =200,blank = True)
-    shirt_size = models.CharField(max_length=5, blank=True)
+    SHIRTS_CHOICES = [('10', '10'), ('12', '12'), ('14', '14'), ('16', '16'), ('18', '18'), ('XS', 'XS'), ('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')]
+    shirt_size = models.CharField(choices=SHIRTS_CHOICES,max_length=4,default = "")
     youth_organization = models.CharField(max_length=64, blank=True)
     hobbies = models.CharField(max_length =200,blank = True)
-    
+    contact_name = models.CharField(max_length=64,blank = False, default = "")
+    contact_relation = models.CharField(max_length=64,blank = False, default = "")
+    contact_phone = models.CharField(max_length=64, blank = False, default = "")
 
     def __str__(self):
         if self.full_name:
             return self.full_name+' תז: '+self.id_number +'\n'
 
         return f'{self.full_name,self.id_number}'
+
+
+
 
 
 class Circle(TimeStampedModel, TitleDescriptionModel):
@@ -66,7 +78,8 @@ class Meeting(TimeStampedModel):
     description = models.TextField(blank=True)
 
 
-
+    def __str__(self):
+        return f'{str(self.circle)} - {self.date_time}'
     
 
    

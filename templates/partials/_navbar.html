@@ -11,12 +11,12 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
 
-          <li 
+          <li
             {% if '/' == request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
-            {% endif%} > 
+            {% endif%} >
             <a class="nav-link" href=""></a>
           </li>
 
@@ -25,52 +25,52 @@
           </li>
 
           <li>
-          <a></a>  
+          <a></a>
          </li>
 
         </ul>
-        
+
         <ul class="navbar-nav ml-auto">
           {%if user.is_authenticated %}
-          <li 
+          <li
             {% if 'dashboard' in request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
-            {% endif %} 
+            {% endif %}
             >
-            
-              
+
+
           </li>
           <li class="nav-item mr-3">
               <a href="javascript:{document.getElementById('logout').submit()}"
               class="nav-link">
                 <i class="fas fa-sign-out-alt"> </i> התנתק
             </a>
-            <form action="{% url 'logout' %}" method="POST" id="logout"> 
+            <form action="{% url 'accounts:logout' %}" method="POST" id="logout"> 
                 {% csrf_token %}
               <input type="hidden">
             </form>
           </li>
-          
+
 
           {%else %}
-            <li 
+            <li
             {% if 'register' in request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
-            {% endif%} 
+            {% endif%}
             >
-              
+
             </li>
-            <li 
+            <li
             {% if 'register' in request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item mr-3"
-            {% endif%} 
-            >   
+            {% endif%}
+            >
               <a class="nav-link" href="{% url 'admin:index' %}">
                 <i class="fas fa-sign-in-alt"></i>
 

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 def index(request):
-     if request.method == 'POST': 
+     if request.method == 'POST':
           username = request.POST['username']
           password = request.POST['password']
 
@@ -15,30 +15,30 @@ def index(request):
                auth.login(request,user)
                messages.success(request,'התחברת בהצלחה')
                return redirect('/circles')
-              
+
           else:
                messages.error(request,'הכנסת פריט שגוי ')
                return redirect('index')
- 
-     else: 
+
+     else:
           return render(request,'accounts/index.html')
 
 
 
 def logout(request):
-     if request.method == 'POST': 
+     if request.method == 'POST':
           auth.logout(request)
           messages.success(request,'התנתקת בהצלחה')
           return redirect('http://127.0.0.1:8000/')
 
-     
+
 def dashboard(request):
      return render(request,'accounts/dashboard.html')
 
 
 
 def register(request):
-     if request.method == 'POST': 
+     if request.method == 'POST':
           first_name = request.POST['first_name']
           last_name = request.POST['last_name']
           username = request.POST['username']
@@ -51,16 +51,16 @@ def register(request):
                #Cehck username
                if User.objects.filter(username = username).exists():
                     messages.error(request,' שם משתמש תפוס נסה אחר')
-                    return redirect('register') 
+                    return redirect('register')
                else:
                     if User.objects.filter(email = email).exists():
                          messages.error(request,'מייל תפוס נסה אחר')
-                         return redirect('register') 
-                    else: 
+                         return redirect('register')
+                    else:
                          # not taken
                          user = User.objects.create_user(username=username,password=password
                          ,email=email,first_name=first_name,last_name=last_name)
-                         
+
                          #wtiout login after register
                          #auth.login(request,user)
                          #messages.success(request, 'Your are now logged in')
@@ -75,6 +75,5 @@ def register(request):
           else:
                messages.error(request,'הסיסמה לא תואמת ')
                return redirect('register')
-     else: 
+     else:
           return render(request,'accounts/register.html')
-     
