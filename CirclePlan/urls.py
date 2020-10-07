@@ -7,9 +7,11 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', include('accounts.urls')),
+
     path('circles/', include('attendance.urls')),
-    # path('accounts/', include('accounts.urls')),
+   
     path('yashuvim/', include('yashuvim.urls')),
 
     path('admin/', admin.site.urls),
+    
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

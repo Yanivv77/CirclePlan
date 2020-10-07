@@ -17,29 +17,29 @@ from .serializers import (CircleSerializer, MemberSerializer,
 import re
 
 def index(request):
-     circles = Circle.objects.all()
-     paginator = Paginator(circles,10)
-     page = request.GET.get('page')
-     paged_circles = paginator.get_page(page)
+     circles = Circle.objects.order_by('created').filter(is_active = True)
+     
+
      context = {
-          'circles' : paged_circles }
+          'circles' : circles }
      return render(request,'./templates/circles/circles.html',context)
 
 
 def circle(request ,circle_id):
-     circle = get_object_or_404(Circle,pk=circle_id)
-     meetings = Meeting.objects.all()
+     circle = get_object_or_404(Circle.objects.order_by('created'),pk=circle_id)
+     meetings = Meeting.objects.order_by('-date_time')
      context = {
           'circle' : circle,
           'meetings' : meetings }
+
      return render(request,'./templates/circles/circle.html',context)
 
 
 def meeting(request ,circle_id,meeting_id,):
-     circle = get_object_or_404(Circle,pk=circle_id)
-     meeting = get_object_or_404(Meeting,pk=meeting_id)
+     circle = get_object_or_404(Circle.objects.order_by('created'),pk=circle_id)
+     meeting = get_object_or_404(Meeting.objects.order_by('created'),pk=meeting_id)
      participations = Participation.objects.all()
-     circlee = Circle.objects.all()
+    
      context = {
           'circle' : circle,
           'participations' : participations,
@@ -83,6 +83,12 @@ class MeetingViewSet(ModelViewSet):
             if 'participation_' in p:
                 participation = Participation.objects.get(id=int(re.sub('participation_','',p)))
                 participation.attended = True if data[p] == 'true' else False
+                participation.save()
+               
+        for p in data:
+            if 'absence_reason_' in p:
+                participation = Participation.objects.get(id=int(re.sub('absence_reason_','',p)))
+                participation.absence_reason = data[p] 
                 participation.save()
 
         meeting.save()
