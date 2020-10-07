@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{%block title %} | Dashboard{% endblock %}
+{%block title %} | Attendance {% endblock %}
 {% block content %}
 
   <!-- Breadcrumb -->
@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row text-center">
       <div class="col-md-12 dar"  >
-        <h1 class="display-5">מפגש</h1>
+        <h1 class="display-5">מילוי נוכחות</h1>
 
       </div>
     </div>
@@ -18,16 +18,20 @@
 <!--Alerts-->
 {% include 'partials/_alerts.html' %}
 
-<!-- Breadcrumb -->
-<section id="bc" class="mt-4">
+<!-- Breadcrumb --> 
+<section id="bc" class="mt-3">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-
-            <i class="fas fa-home"></i>ראשי</a>
+          <a href="{% url 'index' %}">
+            <il class="fas fa-home" > </i>  ניהול פעילויות</a>
         </li>
-        <!--<li class="breadcrumb-item active"> Dashboard</li>-->
+        <li class="breadcrumb-item">
+          <a href=" http://127.0.0.1:8000/circles/{{circle.id}}" >
+            <il class="fas breadcrumb-item" > </i>  {{circle.title}}</a>
+        </li>
+        <li class="breadcrumb-item active"> {{ meeting }}</li>
       </ol>
     </nav>
   </div>
@@ -35,53 +39,67 @@
 
 
 
-  <section id="dashboard" class="py-2">
+  <section id="dashboard" class="py-2" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h2>שלום,  {{user}}</h2>
             <h5>   {{meeting}}</h5>
-          <div class="card-body">
+            <div class="card-body">
             <form action="{% url 'MeetingViewSet' circle.pk meeting.pk %}" method = 'POST' id="form_attend">
                   {% csrf_token %}
-                    <div class="table-responsive">
+                    <div class="table col-md-12">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead>
                               <tr>
                                 <th>שם</th>
                                 <th>נוכחות</th>
+                                <th>סיבת חיסור</th>
                               </tr>
                           </thead>
                             <tbody>
                                 {% for participation in participations  %}
                                   {%  if meeting == participation.meeting %}
-                                    <tr>
-                                      <td>{{participation.member.full_name}}</td>
-                                      <td>
-                                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                    {% if participation.attended  %}
-                                                      <label class="btn btn-outline-success active">
-                                                      <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" checked> נוכח
-                                                      </label>
-                                                      <label class="btn btn-outline-danger">
-                                                      <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false"> נעדר
-                                                      </label>
-                                                    {% else %}
-                                                      <label class="btn btn-outline-success">
-                                                      <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" > נוכח
-                                                      </label>
-                                                      <label class="btn btn-outline-danger active">
-                                                      <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false" checked> נעדר
-                                                      </label>
-                                                    {% endif %}
-                                            </div>
-                                        </td>
-                                    </tr>
+                                  <tr>
+                                    <td>{{participation.member.full_name}}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                  {% if participation.attended  %}
+                                                   
+                                                    <label class="btn btn-outline-success active">
+                                                    <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" checked> נוכח
+                                                    </label>
+                                                    <p style="margin-left: 1.5em"></p>
+                                                    <label class="btn btn-outline-danger">
+                                                    <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false"> נעדר
+                                                    </label>
+                                                  {% else %}
+                                                    <label class="btn btn-outline-success">
+                                                    <input type="radio" name="participation_{{ participation.id }}" id="option1" autocomplete="off" value="true" > נוכח
+                                                    </label>
+                                                    <p style="margin-left: 1.5em"></p>
+                                                    <label class="btn btn-outline-danger active">
+                                                    <input type="radio" name="participation_{{ participation.id }}" id="option2" autocomplete="off" value="false" checked> נעדר
+                                                    </label>
+                                                  {% endif %}
+                                          </div>
+                                      </td>
+                                      {% if participation.attended == False  %}  
+                                        <td><input type="text" name="absence_reason_{{ participation.id }}" class="form-control " value= {{ participation.absence_reason }} > </td>
+                                      {% else %}
+                                        <td><input type="text" name="not_absence" class="form-control" value=" " > </td>
+                                        <style type="text/css"> input[name=not_absence] {background-color: #f4f4f4f4;; pointer-events: none; }</style>
+                                      {% endif %}
+                                      
+
+
+
+                                  </tr>
                                     {% endif %}
                                     {% endfor %}
                             </tbody>
                         </table>
-                <input class="btn btn-success" type="submit" value="שמור" >
+                        <input class="btn btn-success" type="submit" value="שמור" >
             </form>
           </div>
       </div>

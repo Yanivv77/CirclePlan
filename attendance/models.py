@@ -99,6 +99,7 @@ class Participation(TimeStampedModel):
         related_query_name="participation",
     )
     attended = models.BooleanField(default=False)
+    absence_reason = models.CharField(max_length=254,blank = True)
  
 
   

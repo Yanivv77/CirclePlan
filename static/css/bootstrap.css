@@ -1259,7 +1259,7 @@ pre {
 
 .table-responsive {
   display: block;
-  width: 100%;
+  width: 60%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar; }
@@ -6334,7 +6334,7 @@ a.text-dark:hover, a.text-dark:focus {
     .hero-image {
       background-image: url("https://funbeasts.com/wp-content/uploads/2019/01/duy-pham-704498-unsplash-1.jpg");
       background-color: #cccccc;
-      height: 820px;
+      height: 920px;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

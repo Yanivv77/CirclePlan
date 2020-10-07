@@ -13,11 +13,7 @@
 
 
 
-<style type="text/css">
-    .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
-        display: none
-    }
-    </style>
+
 
 
 {% block userlinks %}
@@ -33,7 +29,7 @@
     {% if user.has_usable_password %}
         <a href="{% url 'admin:password_change' %}">Change password</a> |
     {% endif %}
-        <a href="{% url 'admin:logout' %}">Log out</a>
+        <a href="http://127.0.0.1:8000">Log out</a>
 
 {% endblock %}
 
