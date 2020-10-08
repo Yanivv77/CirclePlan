@@ -15,6 +15,7 @@ from .serializers import (CircleSerializer, MemberSerializer,
                           MeetingTableSerializer, SimpleCircleSerializer,
                           MeetingSerializer, ParticipationSerializer,)
 import re
+from django.contrib import messages
 
 def index(request):
      circles = Circle.objects.order_by('created').filter(is_active = True)
@@ -27,7 +28,7 @@ def index(request):
 
 def circle(request ,circle_id):
      circle = get_object_or_404(Circle.objects.order_by('created'),pk=circle_id)
-     meetings = Meeting.objects.order_by('-date_time')
+     meetings = Meeting.objects.order_by('date_time')
      context = {
           'circle' : circle,
           'meetings' : meetings }
@@ -36,8 +37,8 @@ def circle(request ,circle_id):
 
 
 def meeting(request ,circle_id,meeting_id,):
-     circle = get_object_or_404(Circle.objects.order_by('created'),pk=circle_id)
-     meeting = get_object_or_404(Meeting.objects.order_by('created'),pk=meeting_id)
+     circle = get_object_or_404(Circle,pk=circle_id)
+     meeting = get_object_or_404(Meeting,pk=meeting_id)
      participations = Participation.objects.all()
     
      context = {
@@ -84,13 +85,15 @@ class MeetingViewSet(ModelViewSet):
                 participation = Participation.objects.get(id=int(re.sub('participation_','',p)))
                 participation.attended = True if data[p] == 'true' else False
                 participation.save()
-               
-        for p in data:
             if 'absence_reason_' in p:
                 participation = Participation.objects.get(id=int(re.sub('absence_reason_','',p)))
-                participation.absence_reason = data[p] 
+                participation.absence_reason = data[p]
                 participation.save()
 
+               
+   
+
         meeting.save()
+        messages.success(request,'נוכחות נשמרה בהצלחה')
 
         return Response()

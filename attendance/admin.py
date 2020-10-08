@@ -10,7 +10,7 @@ from django.core.validators import RegexValidator
 
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('full_name','yashuv')
+    list_display = ('full_name','yashuv','id')
     list_filter = ('yashuv',)
     search_fields = ('full_name',)
     exclude = ['description',]

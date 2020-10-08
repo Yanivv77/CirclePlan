@@ -8,6 +8,8 @@ from django.conf.urls import url
 urlpatterns = [
     path('', include('accounts.urls')),
 
+    path('members/', include('members.urls')),
+
     path('circles/', include('attendance.urls')),
    
     path('yashuvim/', include('yashuvim.urls')),

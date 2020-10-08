@@ -9,8 +9,8 @@ def index(request):
      if request.method == 'POST':
           username = request.POST['username']
           password = request.POST['password']
-
           user = auth.authenticate(username=username,password=password)
+
           if user is not None:
                auth.login(request,user)
                messages.success(request,'התחברת בהצלחה')
@@ -21,6 +21,8 @@ def index(request):
                return redirect('index')
 
      else:
+
+          auth.logout(request)
           return render(request,'accounts/index.html')
 
 

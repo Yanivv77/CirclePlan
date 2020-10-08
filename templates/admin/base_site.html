@@ -29,7 +29,7 @@
     {% if user.has_usable_password %}
         <a href="{% url 'admin:password_change' %}">Change password</a> |
     {% endif %}
-        <a href="http://127.0.0.1:8000">Log out</a>
+        <a href="{% url 'accounts:index' %}">Log out</a>
 
 {% endblock %}
 
