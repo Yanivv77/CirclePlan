@@ -3807,3 +3807,18 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
+
+
+  input[type=text]:disabled {
+    background: #ffffff;
+    color: black;
+    font-weight: 600;
+  }
+
+  input[type=email]:disabled {
+    background: #ffffff;
+    color: black;
+    font-weight: 600;
+   
+
+  }
