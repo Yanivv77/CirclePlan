@@ -20,12 +20,12 @@ User.add_to_class("__str__", get_name)
 class Member(TimeStampedModel):
     full_name = models.CharField(max_length=64,blank = False)
     preferred_name = models.CharField(max_length=64, blank=True)
-    id_number = models.CharField(validators=[RegexValidator(regex='^.{9}$', message='Id length has to be 9', code='nomatch',)],max_length =9)
+    id_number = models.CharField(validators=[RegexValidator(regex='^.{9}$', message='Id length has to be 9', code='nomatch',)],max_length =9,unique=True)
     GENDER_CHOICES = [('זכר', 'זכר'), ('נקבה', 'נקבה')]
     gender = models.CharField(choices=GENDER_CHOICES,max_length=4,default = "")
     date_of_birth = models.DateField(blank = False,)
     yashuv = models.ForeignKey(Yashuv, on_delete=models.CASCADE)
-    phone = models.CharField(validators=[RegexValidator(regex='^.{10}$', message='Phone length has to be 10', code='nomatch',)],max_length =10)
+    phone = models.CharField(validators=[RegexValidator(regex='^.{10}$', message='Phone length has to be 10', code='nomatch',)],max_length =10,unique=True)
     email = models.EmailField()
     allergys_to = models.CharField(max_length =200,blank = True)
     SHIRTS_CHOICES = [('10', '10'), ('12', '12'), ('14', '14'), ('16', '16'), ('18', '18'), ('XS', 'XS'), ('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')]
@@ -75,7 +75,7 @@ class Meeting(TimeStampedModel):
         related_query_name="meeting",
     )
     date_time =  models.DateField()
-    description = models.TextField(blank=True)
+   
 
 
     def __str__(self):

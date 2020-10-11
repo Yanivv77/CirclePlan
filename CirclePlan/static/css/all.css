@@ -3822,3 +3822,9 @@ readers do not read off random characters that represent icons */
    
 
   }
+
+  big {
+    font-weight: 8000;
+    font-size: medium;
+
+  }

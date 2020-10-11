@@ -33,6 +33,13 @@ class MeetingAdmin(admin.ModelAdmin):
     list_display = ('circle', 'date_time',)
     exclude = ['description']
 
+'''
+@admin.register(Participation)   
+class ParticipationAdmin(admin.ModelAdmin):
+    list_display = ('meeting','member')
+'''   
+
+
 
 
 
