@@ -1,7 +1,7 @@
 from django.db import models
 from django_extensions.db.models import TitleDescriptionModel
 from django_extensions.db.models import TimeStampedModel 
-from instructors.models import Instructor
+
 from yashuvim.models import Yashuv
 from django.utils import timezone
 
@@ -60,7 +60,7 @@ class Circle(TimeStampedModel, TitleDescriptionModel):
                                      
 
     def __str__(self):
-        return self.title
+        return self.title +  " - "  +self.instructor.first_name + " " +self.instructor.last_name
 
     @property
     def participates(self):

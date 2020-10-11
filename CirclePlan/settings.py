@@ -48,11 +48,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'clear_cache',
     'crispy_forms',
-    'listings.apps.ListingsConfig',
     'accounts.apps.AccountsConfig',
     'members.apps.MembersConfig',
-    'pages.apps.PagesConfig',
-    'instructors.apps.InstructorsConfig',
     'yashuvim.apps.YashuvimConfig',
     'attendance.apps.AttendanceConfig',
 

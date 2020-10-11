@@ -34,10 +34,6 @@ class MeetingAdmin(admin.ModelAdmin):
     exclude = ['description']
 
 
-@admin.register(Participation)
-class ParticipationAdmin(admin.ModelAdmin):
-    list_display = ('meeting', 'member', 'attended',)
-    exclude = ['description']
 
 
 

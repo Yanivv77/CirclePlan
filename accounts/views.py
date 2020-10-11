@@ -18,7 +18,7 @@ def index(request):
 
           else:
                messages.error(request,'הכנסת פריט שגוי ')
-               return redirect('index')
+               return redirect('/')
 
      else:
 
