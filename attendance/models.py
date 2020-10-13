@@ -60,7 +60,7 @@ class Circle(TimeStampedModel, TitleDescriptionModel):
                                      
 
     def __str__(self):
-        return self.title +  " - "  +self.instructor.first_name + " " +self.instructor.last_name
+        return self.title +  " - "  +self.instructor.first_name + " " +self.instructor.last_name + " | " +self.yashuv.name
 
     @property
     def participates(self):

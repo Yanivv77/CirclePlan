@@ -796,7 +796,8 @@ pre {
     max-width: 91.66667%; }
   .col-md-12 {
     flex: 0 0 100%;
-    max-width: 100%; }
+    max-width: 100%;
+    padding-bottom: 2rem; }
   .order-md-first {
     order: -1; }
   .order-md-last {
@@ -3293,7 +3294,7 @@ input[type="button"].btn-block {
   border-radius: 0.25rem; }
 
 .page-link {
-  position: relative;
+  
   display: block;
   padding: 0.5rem 0.75rem;
   margin-left: -1px;

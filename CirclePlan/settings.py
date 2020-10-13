@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'members.apps.MembersConfig',
     'yashuvim.apps.YashuvimConfig',
+    'circles.apps.CirclesConfig',
     'attendance.apps.AttendanceConfig',
 
 

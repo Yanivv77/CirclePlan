@@ -1,0 +1,239 @@
+
+  
+{% extends 'base.html'%}
+{%block title %} | Circles {% endblock %}
+{% block content %}
+
+      <div class="row text-center">
+        <div class="col-md-12 dar"  style="padding-bottom: 0.5rem" >
+          <h1 class="display-5" style="padding-top: 1rem; ">{{circle}} </h1>
+        </div>
+     
+    </div>
+  
+
+
+
+<!--Alerts--> 
+{% include 'partials/_alerts.html' %}
+
+  <!-- Breadcrumb --> 
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">  <il class="fas fa-home" > </i>  עמוד ניהול </a></li>
+          <li class="breadcrumb-item "> <a href="{% url 'adminCircles' %}"> פעילויות  </a> </li>
+          <li class="breadcrumb-item active"> {{circle.title}} </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+
+  <section id="dashboard" class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 "  style="padding-bottom: 0rem;">
+            <h5> רשימת משתתפים בחוג :</h5>
+            {% if members  %}
+                <table class="table col-md-12">
+                  <thead>
+                    <tr style="padding: 0.25rem">
+                      <th scope="col-md-4 " style="padding: 0.25rem" >שם משתתף</th>
+                      <th scope="col-md-4 " style="padding: 0.25rem" >תז</th>
+                      <th scope="col-md-4" style="padding: 0.25rem" >שם ישוב</th>
+                      
+                      
+                      <th style="padding: 0.25rem" ></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for member in members  %}
+                         {% for id in membersId  %}
+
+                              {%  if id == member.id_number %}
+                                <tr style="padding: 0.25rem" > 
+                                
+                                  <td style="padding: 0.25rem" >
+                                    <a href="{%url 'profile' member.id %}">{{ member.full_name }}</a>
+                                  </td>
+                                  <td style="padding: 0.25rem" >{{ member.id_number }}</td>
+                                  <td style="padding: 0.25rem" >{{ member.yashuv}}</td>
+                                  
+                                  
+                                  <td style="padding: 0.25rem" >
+          
+                            
+                                <a class="btn btn-light col-md-12" style="display: inline-table;" href="{% url 'profile' member.id   %}">כניסה לפרטים נוספים</a>
+                                  
+                                  </td>
+                                </tr>
+                              {% endif %}
+
+                       
+                          {% endfor %}           
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <div class="col-md-12">
+                  {% if circles.has_other_pages %}
+          
+                    <ul class="pagination" style="margin-bottom: 3rem;">
+                        {% if circles.has_previous %}
+                          <li class="page_item"> 
+                            <a href="?page={{circles.previous_page_number}}" class="page-link"> &laquo; </a>
+                          </li>
+                        {% else %}
+                          <li class ="page-item disabled">
+                            <a  class="page-link">  &laquo; </a>
+                          </li>
+                        {%endif%}  
+                        {% for i in circles.paginator.page_range %}
+                           {% if circles.number == i %}
+                              <li class ="page-item active">
+                                <a class="page-link">  {{i}} </a>
+                              </li> 
+                           {% else%}
+                            <li class ="page-item ">
+                                <a href="?page={{i}}" class="page-link"> {{i}} </a>
+                            </li>
+                           {% endif %}
+                        {% endfor %}
+                        {% if circles.has_next %}
+                            <li class="page_item"> 
+                              <a href="?page={{circles.next_page_number}}" class="page-link"> &raquo; </a>
+                            </li>
+                        {% else %}
+                          <li class ="page-item disabled">
+                            <a  class="page-link">  &laquo; </a>
+                          </li>
+                        {%endif%}  
+                    </ul>
+          
+                  {%endif%}
+          
+            </div>
+                
+            {% else %}
+            <p></p>
+            <p> אין כרגע חוג שאתה מדריך </p>
+            {% endif %}
+  
+        </div>
+      </div>
+    </div>
+    <section >
+
+      <section id="dashboard" class="py-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12" style="padding-bottom: 0rem;">
+                <h5> רשימת מפגשים בחוג :</h5>
+            </div>
+          </div>
+        </div>
+       </section>
+
+<section id="dashboard" class="py-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+       
+          {% if meetings  %}
+              <table class="table col-md-12">
+                <thead>
+                  <tr>
+                   
+                    <th scope="col-md-4 ">תאריך פגישה</th>
+                    <th scope="col-md-4 "></th>
+              
+                    
+                    
+
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  {% for meeting in meetings %}
+                
+                    {% if circle.id == meeting.circle.id  %}
+                        
+                      
+                            <tr>
+                            
+                              
+                            
+                              <td>
+                                {{ meeting.date_time|date:"d.m.Y"}} 
+                              <td>
+                               
+
+                        
+                            <a class="btn btn-light col-md-12" style="display: inline-table;" href="{% url 'adminMeeting' circle.id meeting.id %}">כנס כאן</a>
+                            
+                              
+                              </td>
+                            </tr>
+                       
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          {% else %}
+          <p></p>
+          <p> אין כרגע חוג שאתה מדריך </p>
+          {% endif %}
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+          {% if meetings  %}
+        
+                  
+                  {% for meeting in meetings %}
+                
+                    {% if circle.id == meeting.circle.id  %}
+                        {% if circle.instructor == user  %}
+                      
+                            <tr>
+                            
+                              
+                            
+                              <td>
+                                {{ meeting.date_time|date:"d.m.Y"}} 
+                              <td>
+
+                        
+                            <a class="btn btn-light col-md-12" href="{% url 'meeting' circle.id meeting.id %}">כנס כאן</a>
+                            
+                              
+                              </td>
+                            </tr>
+                        {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          {% else %}
+          <p></p>
+          <p> אין כרגע חוג שאתה מדריך </p>
+          {% endif %}
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

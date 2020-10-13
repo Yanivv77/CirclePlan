@@ -3293,7 +3293,7 @@ input[type="button"].btn-block {
   border-radius: 0.25rem; }
 
 .page-link {
-  position: relative;
+  
   display: block;
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
@@ -6192,7 +6192,10 @@ button.bg-dark:focus {
   font-weight: 400 !important; }
 
 .font-weight-bold {
-  font-weight: 700 !important; }
+  font-weight: 700 !important; 
+  font-size: large !important; 
+
+}
 
 .font-italic {
   font-style: italic !important; }
