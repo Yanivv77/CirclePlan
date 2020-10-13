@@ -90,7 +90,7 @@
                                           </div>
                                       </td>
                                       {% if participation.attended == False  %}  
-                                        <td><input type="text" name="absence_reason_{{ participation.id }}" class="form-control " value= {{ participation.absence_reason }} > </td>
+                                        <td><input type="text" name="absence_reason_{{ participation.id }}" class="form-control " value= "{{participation.absence_reason}}" > </td>
                                       {% else %}
                                         <td><input type="text" name="not_absence" class="form-control" value=" " > </td>
                                         <style type="text/css"> input[name=not_absence] {background-color: #f4f4f4f4;; pointer-events: none;} </style>
