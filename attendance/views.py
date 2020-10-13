@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import HttpRequest
 from rest_framework.request import Request
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.contrib.auth.decorators import login_required
 from .serializers import (CircleSerializer, MemberSerializer,
                           MeetingTableSerializer, SimpleCircleSerializer,
@@ -39,7 +39,7 @@ def circle(request ,circle_id):
 def meeting(request ,circle_id,meeting_id,):
      circle = get_object_or_404(Circle,pk=circle_id)
      meeting = get_object_or_404(Meeting,pk=meeting_id)
-     participations = Participation.objects.all()
+     participations = Participation.objects.order_by('id')
     
      context = {
           'circle' : circle,
@@ -82,13 +82,11 @@ class MeetingViewSet(ModelViewSet):
                 participation = Participation.objects.get(id=int(re.sub('participation_','',p)))
                 participation.attended = True if data[p] == 'true' else False
                 participation.save()
+
             if 'absence_reason_' in p:
                 participation = Participation.objects.get(id=int(re.sub('absence_reason_','',p)))
                 participation.absence_reason = data[p]
-                participation.save()
-
-               
-   
+                participation.save()   
 
         meeting.save()
         messages.success(request,'נוכחות נשמרה בהצלחה')
