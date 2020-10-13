@@ -14,12 +14,14 @@ from django.core.validators import RegexValidator
 
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('full_name','yashuv','id')
+    list_display = ('full_name','id_number','yashuv',)
     list_filter = ('yashuv',)
-    search_fields = ('full_name',)
+    search_fields = ('full_name','id_number',)
     exclude = ['description',]
     
 admin.site.register(Member,MemberAdmin) 
+
+
 
 
 @admin.register(Circle)
@@ -50,7 +52,10 @@ class ParticipationAdmin(admin.ModelAdmin):
 
 
 
+
+
 class CustomUserAdmin(UserAdmin):
+    list_display = ('username','first_name','last_name','email',)
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -60,6 +65,7 @@ class CustomUserAdmin(UserAdmin):
         (_('Important dates'), {'fields': ( 'date_joined',)}),
     )
 
+    
 
 class CustomGroupAdmin(GroupAdmin):
     def formfield_for_manytomany(self, db_field, request=None, **kwargs):
