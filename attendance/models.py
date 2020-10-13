@@ -26,7 +26,7 @@ class Member(TimeStampedModel):
     date_of_birth = models.DateField(blank = False,)
     yashuv = models.ForeignKey(Yashuv, on_delete=models.CASCADE)
     phone = models.CharField(validators=[RegexValidator(regex='^.{10}$', message='Phone length has to be 10', code='nomatch',)],max_length =10,unique=True)
-    email = models.EmailField()
+    email = models.EmailField(blank = True)
     allergys_to = models.CharField(max_length =200,blank = True)
     SHIRTS_CHOICES = [('10', '10'), ('12', '12'), ('14', '14'), ('16', '16'), ('18', '18'), ('XS', 'XS'), ('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')]
     shirt_size = models.CharField(choices=SHIRTS_CHOICES,max_length=4,default = "")

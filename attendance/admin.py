@@ -14,19 +14,22 @@ from django.core.validators import RegexValidator
 
 
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('full_name','yashuv','id')
+    list_display = ('full_name','id_number','yashuv',)
     list_filter = ('yashuv',)
-    search_fields = ('full_name',)
+    search_fields = ('full_name','id_number',)
     exclude = ['description',]
     
 admin.site.register(Member,MemberAdmin) 
 
 
+
+
 @admin.register(Circle)
 class CircleAdmin(admin.ModelAdmin):
+   
    list_display = ('title','instructor','yashuv','is_active','participates')
    list_display_links = ('title',)  
-   search_fields = ('title',)
+   search_fields = ('title','yashuv__name',)
    list_filter = ('yashuv','instructor',)
    exclude = ['description']
    
@@ -35,7 +38,7 @@ class CircleAdmin(admin.ModelAdmin):
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
     list_display = ('circle', 'date_time', )
-    search_fields = ['circle__title','circle__auth_user ']
+    search_fields = ['circle__title', 'circle__yashuv__name']
     exclude = ['description']
 
 '''
@@ -50,16 +53,19 @@ class ParticipationAdmin(admin.ModelAdmin):
 
 
 
+
+
 class CustomUserAdmin(UserAdmin):
+    list_display = ('username','first_name','last_name','email',)
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email',)}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups',)}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser','groups',)}),
         (_('Important dates'), {'fields': ( 'date_joined',)}),
     )
 
+    
 
 class CustomGroupAdmin(GroupAdmin):
     def formfield_for_manytomany(self, db_field, request=None, **kwargs):
