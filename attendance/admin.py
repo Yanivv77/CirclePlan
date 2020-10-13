@@ -26,9 +26,10 @@ admin.site.register(Member,MemberAdmin)
 
 @admin.register(Circle)
 class CircleAdmin(admin.ModelAdmin):
+   
    list_display = ('title','instructor','yashuv','is_active','participates')
    list_display_links = ('title',)  
-   search_fields = ('title',)
+   search_fields = ('title','yashuv__name',)
    list_filter = ('yashuv','instructor',)
    exclude = ['description']
    
@@ -37,7 +38,7 @@ class CircleAdmin(admin.ModelAdmin):
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
     list_display = ('circle', 'date_time', )
-    search_fields = ['circle__title','circle__auth_user ']
+    search_fields = ['circle__title', 'circle__yashuv__name']
     exclude = ['description']
 
 '''
@@ -60,8 +61,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email',)}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups',)}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser','groups',)}),
         (_('Important dates'), {'fields': ( 'date_joined',)}),
     )
 
