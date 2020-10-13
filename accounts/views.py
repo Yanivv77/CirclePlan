@@ -17,7 +17,7 @@ def index(request):
                return redirect('/circles')
 
           else:
-               messages.error(request,'הכנסת פריט שגוי ')
+               messages.error(request,'פרטי משתמש אינם נוכנים ')
                return redirect('/')
 
      else:
