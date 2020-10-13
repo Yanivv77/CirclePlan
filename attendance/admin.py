@@ -9,6 +9,10 @@ from django.core.validators import RegexValidator
 
 
 
+
+
+
+
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('full_name','yashuv','id')
     list_filter = ('yashuv',)
@@ -30,8 +34,16 @@ class CircleAdmin(admin.ModelAdmin):
 
 @admin.register(Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ('circle', 'date_time',)
+    list_display = ('circle', 'date_time', )
+    search_fields = ['circle__title','circle__auth_user ']
     exclude = ['description']
+
+'''
+@admin.register(Participation)   
+class ParticipationAdmin(admin.ModelAdmin):
+    list_display = ('meeting','member')
+'''   
+
 
 
 

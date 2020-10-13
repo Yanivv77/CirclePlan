@@ -45,9 +45,6 @@ def meeting(request ,circle_id,meeting_id,):
           'circle' : circle,
           'participations' : participations,
           'meeting' : meeting }
-
-
-
      return render(request,'./templates/circles/meeting.html',context)
 
 
