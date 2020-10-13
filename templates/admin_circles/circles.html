@@ -13,7 +13,7 @@
     <div class="home-search p-5 " style="min-height: 250px;">
       <div class="overlay p-5" style="background: rgba(0, 118, 197, 0.89); min-height: 0px; padding: 1.5rem !important;">
         <h1 class="display-4 mb-4">
-          חיפוש פיעלויות
+          חיפוש פעילויות
         </h1>
         <div class="search">
           <form action="{% url 'search' %}">
@@ -22,7 +22,7 @@
               <div class="col-md-2 mb-2"></div>
               <div class="col-md-4 mb-3">
                 <label class="sr-only">Keywords</label>
-                <input type="text" name="keywords" class="form-control" placeholder="חיפוש לפי שם חוג">
+                <input type="text" name="keywords" class="form-control" placeholder="חיפוש לפי שם פעילות">
               </div>
  
 
@@ -64,7 +64,7 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"> <a href="{% url 'admin:index' %}"></a>  <il class="fas fa-home" > </i>  עמוד ניהול </a></li>
+          <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">  <il class="fas fa-home" > </i>  עמוד ניהול </a></li>
             <li class="breadcrumb-item active ">  פעילויות  </li>
            
            
@@ -86,7 +86,7 @@
               <table class="table col-md-12">
                 <thead>
                   <tr>
-                    <th scope="col-md-4 ">שם חוג</th>
+                    <th scope="col-md-4 ">שם פעילות</th>
                     <th scope="col-md-4 ">שם מדריך</th>
                     <th scope="col-md-4">שם ישוב</th>
                     <th scope="col-md-4">תאריך התחלה</th>
@@ -155,7 +155,7 @@
               
           {% else %}
           <p></p>
-          <p> אין כרגע חוג שאתה מדריך </p>
+          <p> אין כרגע פעילויות </p>
           {% endif %}
 
           
