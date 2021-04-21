@@ -48,7 +48,7 @@ iniconfig==1.0.1
 itypes==1.2.0
 jet-bridge==0.8.7
 jet-bridge-base==0.8.9
-Jinja2==2.11.2
+Jinja2==2.11.3
 Markdown==3.3
 MarkupSafe==1.1.1
 more-itertools==8.5.0
